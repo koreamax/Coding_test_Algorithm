@@ -6,7 +6,7 @@ class Solution {
         int[] temp = new int[4];
         
         for (int i = 0; i < land.length - 1; i++) {
-            // 에잇 더럽다 더러워
+            // 얕은 복사, 깊은 복사 확인할것
             for (int j = 0; j < 4; j++) {
                 temp[j] = land[i][j];
             }
