@@ -4,35 +4,22 @@ M = int(stdin.readline())
 S = set()
 
 for _ in range(M):
-    pre = list(stdin.readline().split())
-    cmd = pre[0]
+    pre = list(stdin.readline().strip().split())
     if len(pre) == 2:
-        sec = pre[1]
-        n = int(sec)
-        if n in S:
-            a = True
-        else:
-            a = False
+        sec = int(pre[1])
 
-    if (cmd == "add"):
-        if not a:
-            S.add(n)
-    elif (cmd == "remove"):
-        if a:
-            S.remove(n)
-    elif (cmd == "check"):
-        if a:
-            print(1)
+    if (pre[0] == "add"):
+        S.add(sec)
+    elif (pre[0] == "remove"):
+        S.discard(sec)
+    elif (pre[0] == "check"):
+        print(1 if sec in S else 0)
+    elif (pre[0] == "toggle"):
+        if sec in S:
+            S.discard(sec)
         else:
-            print(0)
-    elif (cmd == "toggle"):
-        if a:
-            S.remove(n)
-        else:
-            S.add(n)
-    elif (cmd == "all"):
-        S = set()
-        for i in range(20):
-            S.add(i+1)
-    elif (cmd == "empty"):
+            S.add(sec)
+    elif (pre[0] == "all"):
+        S = {i+1 for i in range(20)}
+    elif (pre[0] == "empty"):
             S = set()
