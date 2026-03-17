@@ -1,27 +1,20 @@
 import sys
-from collections import deque
 
 input = sys.stdin.readline
 
 N = int(input())
 
 A = list(map(int, input().split()))
-NGE = [0 for _ in range(N)]
+NGE = [-1 for _ in range(N)]
 
-d = deque()
-d.append(0)
+d = [] # 인덱스 저장할 스택
 
-for i in range(1, N):
-    while len(d) and A[d[-1]] < A[i]:
+for i in range(N):
+    # 스택에 값이 존재하거나 새로 들어온 값이 top보다 클 때 까지 반복
+    while d and A[d[-1]] < A[i]:
+        # 오큰수에 저장
         NGE[d.pop()] = A[i]
 
-    if i == N-1:
-        NGE[i] = -1
-        break
-    else:
-        d.append(i)
-
-while len(d):
-    NGE[d.pop()] = -1
+    d.append(i) # 인덱스 추가
 
 print(*NGE)
